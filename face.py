@@ -8,6 +8,7 @@ import time
 import uuid
 import requests
 import json
+from config import *
 from PIL import Image
 from urllib.parse import urlparse
 from io import BytesIO
@@ -20,10 +21,6 @@ import cv2
 
 cam = cv2.VideoCapture(0)
 
-
-KEY = '16c329f80615464180fdc00acab25149'
-ENDPOINT = 'https://senior-project.cognitiveservices.azure.com/'
-ENDPOINT2 = 'https://senior-project.cognitiveservices.azure.com/'
 face_client = FaceClient(ENDPOINT, CognitiveServicesCredentials(KEY))
 
 TARGET_GROUP_ID = str(uuid.uuid4())
