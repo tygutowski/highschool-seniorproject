@@ -31,6 +31,7 @@ FRIENDLY_PATH = os.path.join(PATH, "friendly1")
 
 GROUP_ID = 'authorized'
 print('Person group:', GROUP_ID)
+#This is to create (NOT RETRAIN) a new persongroup (if ever needed)
 '''
 face_client.person_group.delete(person_group_id=GROUP_ID,name=GROUP_ID)
 face_client.person_group.create(person_group_id=GROUP_ID, name=GROUP_ID)
@@ -48,32 +49,6 @@ for index, image in enumerate(friendly_images):
     
 for index, image in enumerate(all_images):
     all_list.append(os.path.join(ALL_PATH, all_images[index]))
-
-
-
-#Moved this code to authorize.py
-'''
-for image in friendly_list:
-    friendly_group_image = open(image, 'r+b')
-    face_client.person_group_person.add_face_from_stream(GROUP_ID, friendly_group.person_id, friendly_group_image)
-
-
-print("Training person group.")
-
-face_client.person_group.train(GROUP_ID)
-
-while(True):
-    training_status = face_client.person_group.get_training_status(GROUP_ID)
-    print("Training Status: {}.".format(training_status.status))
-    if(training_status.status is TrainingStatusType.succeeded):
-        break
-    elif(training_status.status is TrainingStatusType.failed):
-        sys.exit("Training the person group has failed.")
-    time.sleep(5)
-'''
-
-
-
 
 name = "webcam.jpg"
 x=0
@@ -111,9 +86,3 @@ while(True):
 # When everything done, release the capture
 cam.release()
 cv2.destroyAllWindows()
-
-
-
-
-
-
